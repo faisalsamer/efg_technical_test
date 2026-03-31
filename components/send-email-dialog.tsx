@@ -31,7 +31,7 @@ export function SendEmailDialog({
   trigger,
 }: SendEmailDialogProps) {
   const loginUrl = typeof window !== 'undefined' ? `${window.location.origin}/login` : '/login'
-  const expiry = new Date(expiryAt).toLocaleString()
+  const expiry = new Date(expiryAt).toLocaleString('en-MY', { timeZone: 'Asia/Kuala_Lumpur' }) + ' (MYT)'
 
   const defaultSubject = `Technical Assessment - ${candidateName}`
   const defaultBody = `Hi ${candidateName},

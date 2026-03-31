@@ -40,6 +40,9 @@ export function AddCandidateDialog() {
     const timeLimitMinutes = formData.get('time_limit_minutes') as string
     const expiryAt = formData.get('expiry_at') as string
 
+    // Append the admin's timezone so the server can interpret the datetime correctly
+    formData.set('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone)
+
     const result = await addCandidate(prev, formData)
     if (result?.success) {
       setOpen(false)
@@ -47,7 +50,7 @@ export function AddCandidateDialog() {
       setCreated(c)
 
       const loginUrl = `${window.location.origin}/login`
-      const expiry = new Date(expiryAt).toLocaleString()
+      const expiry = new Date(expiryAt).toLocaleString('en-MY', { timeZone: 'Asia/Kuala_Lumpur' }) + ' (MYT)'
       setEmailSubject(`Technical Assessment - ${name}`)
       setEmailBody(`Hi ${name},
 
