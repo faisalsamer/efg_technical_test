@@ -10,10 +10,15 @@ import {
 } from '@/lib/session'
 import { redirect } from 'next/navigation'
 
+export type CandidateLoginState = {
+  error?: string
+  confirm?: { name: string; timeLimitMinutes: number; expiryAt: string }
+} | null
+
 export async function loginCandidate(
-  _prevState: { error?: string } | null,
+  _prevState: CandidateLoginState,
   formData: FormData
-) {
+): Promise<CandidateLoginState> {
   const email = formData.get('email') as string
   const password = formData.get('password') as string
 
@@ -50,8 +55,17 @@ export async function loginCandidate(
     }
   }
 
-  // Start timer on first login
+  // First login: ask the candidate to confirm they are ready before the timer starts
   if (!candidate.timer_started_at) {
+    if (formData.get('confirm_start') !== '1') {
+      return {
+        confirm: {
+          name: candidate.name,
+          timeLimitMinutes: candidate.time_limit_minutes,
+          expiryAt: candidate.expiry_at,
+        },
+      }
+    }
     await supabase
       .from('candidates')
       .update({ timer_started_at: new Date().toISOString() })

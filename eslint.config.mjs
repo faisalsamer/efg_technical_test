@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Assessor-only grading kit and cloned candidate repos (both gitignored)
+    "grading/**",
+    "Submissions/**",
   ]),
 ]);
 

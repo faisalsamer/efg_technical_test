@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Interview Test Platform",
+  title: "Ezyfusion Technical Assessment",
   description: "Timed technical test platform for candidates",
 };
 

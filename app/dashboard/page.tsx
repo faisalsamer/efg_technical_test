@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { CountdownTimer } from '@/components/countdown-timer'
 import { SubmissionForm } from '@/components/submission-form'
 import { TestRequirements } from '@/components/test-requirements'
+import { BrandLogo } from '@/components/brand-logo'
 import { LogoutButton } from './logout-button'
 
 export const dynamic = 'force-dynamic'
@@ -20,6 +21,8 @@ export default async function DashboardPage() {
     .single()
 
   if (!candidate) redirect('/login')
+  // After an admin reset the timer is cleared; logging in again starts it
+  if (!candidate.timer_started_at) redirect('/login')
 
   const submission = await getSubmission(candidate.id)
 
@@ -32,10 +35,12 @@ export default async function DashboardPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-50 border-b border-border bg-[#0d1220]/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-border bg-navy-950/80 backdrop-blur-xl">
         <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-sm">
+            <BrandLogo size={30} />
+            <div className="w-px h-7 bg-border" />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-navy-950 font-bold text-sm">
               {candidate.name.charAt(0).toUpperCase()}
             </div>
             <div>
@@ -57,8 +62,8 @@ export default async function DashboardPage() {
 
         <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
           <div className="flex items-center gap-2.5 mb-5">
-            <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-indigo-400"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
+            <div className="w-8 h-8 rounded-lg bg-gold-500/10 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gold-400"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
             </div>
             <h2 className="text-lg font-semibold">Test Requirements</h2>
           </div>

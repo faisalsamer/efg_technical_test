@@ -1,0 +1,8 @@
+# assessor-only kit and cloned candidate repos: never upload
+grading
+Submissions
+
+# local env files: the CLI uploads .env by default, and Next would then
+# expand the $ in Vercel's ADMIN_PASSWORD_HASH and blank it out
+.env
+.env.*

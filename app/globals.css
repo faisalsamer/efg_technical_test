@@ -46,6 +46,23 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Ezyfusion brand palette (ezyfusion.my): antique gold + dark slate navy */
+  --color-gold-50: #fbf7ee;
+  --color-gold-100: #f4ead3;
+  --color-gold-200: #e9d5a8;
+  --color-gold-300: #dcbd7c;
+  --color-gold-400: #cba55f;
+  --color-gold-500: #b8924b;
+  --color-gold-600: #9c7533;
+  --color-gold-700: #7d5c29;
+  --color-gold-800: #614724;
+  --color-gold-900: #4a3720;
+  --color-gold-950: #2a1f11;
+  --color-navy-700: #2a3350;
+  --color-navy-800: #1b2236;
+  --color-navy-900: #111625;
+  --color-navy-950: #0b0e17;
 }
 
 :root {
@@ -84,37 +101,39 @@
 }
 
 .dark {
-  --background: #0b0f1a;
-  --foreground: #e2e8f0;
-  --card: #111827;
-  --card-foreground: #e2e8f0;
-  --popover: #111827;
-  --popover-foreground: #e2e8f0;
-  --primary: #818cf8;
-  --primary-foreground: #0b0f1a;
-  --secondary: #1e293b;
-  --secondary-foreground: #cbd5e1;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --accent: #1e293b;
-  --accent-foreground: #cbd5e1;
+  /* Native controls (date picker icon, autofill, scrollbars) render in their dark variant */
+  color-scheme: dark;
+  --background: #0b0e17;
+  --foreground: #ece9e1;
+  --card: #111625;
+  --card-foreground: #ece9e1;
+  --popover: #111625;
+  --popover-foreground: #ece9e1;
+  --primary: #b8924b;
+  --primary-foreground: #0b0e17;
+  --secondary: #1b2236;
+  --secondary-foreground: #d4d6de;
+  --muted: #1b2236;
+  --muted-foreground: #a0a5b5;
+  --accent: #1b2236;
+  --accent-foreground: #d4d6de;
   --destructive: #f87171;
-  --border: #1e293b;
-  --input: #1e293b;
-  --ring: #6366f1;
-  --chart-1: #818cf8;
-  --chart-2: #a78bfa;
-  --chart-3: #c084fc;
-  --chart-4: #e879f9;
-  --chart-5: #f472b6;
-  --sidebar: #111827;
-  --sidebar-foreground: #e2e8f0;
-  --sidebar-primary: #818cf8;
-  --sidebar-primary-foreground: #e2e8f0;
-  --sidebar-accent: #1e293b;
-  --sidebar-accent-foreground: #e2e8f0;
-  --sidebar-border: #1e293b;
-  --sidebar-ring: #6366f1;
+  --border: #222a40;
+  --input: #222a40;
+  --ring: #b8924b;
+  --chart-1: #dcbd7c;
+  --chart-2: #b8924b;
+  --chart-3: #9c7533;
+  --chart-4: #7d5c29;
+  --chart-5: #614724;
+  --sidebar: #111625;
+  --sidebar-foreground: #ece9e1;
+  --sidebar-primary: #b8924b;
+  --sidebar-primary-foreground: #0b0e17;
+  --sidebar-accent: #1b2236;
+  --sidebar-accent-foreground: #ece9e1;
+  --sidebar-border: #222a40;
+  --sidebar-ring: #b8924b;
 }
 
 @layer base {
@@ -130,8 +149,8 @@
 }
 
 /* Glow effects */
-.glow-indigo {
-  box-shadow: 0 0 30px rgba(99, 102, 241, 0.08), 0 0 80px rgba(99, 102, 241, 0.04);
+.glow-gold {
+  box-shadow: 0 0 30px rgba(184, 146, 75, 0.1), 0 0 80px rgba(184, 146, 75, 0.05);
 }
 .glow-red {
   box-shadow: 0 0 30px rgba(248, 113, 113, 0.1), 0 0 80px rgba(248, 113, 113, 0.04);
@@ -139,8 +158,23 @@
 .glow-emerald {
   box-shadow: 0 0 30px rgba(52, 211, 153, 0.08), 0 0 80px rgba(52, 211, 153, 0.04);
 }
-.glow-amber {
-  box-shadow: 0 0 30px rgba(251, 191, 36, 0.08), 0 0 80px rgba(251, 191, 36, 0.04);
+.glow-orange {
+  box-shadow: 0 0 30px rgba(251, 146, 60, 0.08), 0 0 80px rgba(251, 146, 60, 0.04);
+}
+
+/* Edge's built-in password reveal button; PasswordInput provides its own toggle */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+/* Native date picker icon: show it is clickable */
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.85;
+}
+input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 
 /* Custom scrollbar */
@@ -151,15 +185,15 @@
   background: transparent;
 }
 .dialog-scroll::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #2a3350;
   border-radius: 3px;
 }
 .dialog-scroll::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #3a4566;
 }
 
 /* Firefox */
 .dialog-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #334155 transparent;
+  scrollbar-color: #2a3350 transparent;
 }

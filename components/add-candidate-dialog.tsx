@@ -14,6 +14,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { buildInviteEmail } from '@/lib/invite-email'
 
 interface CreatedCandidate {
   name: string
@@ -49,55 +50,16 @@ export function AddCandidateDialog() {
       const c: CreatedCandidate = { name, email, password, timeLimitMinutes: parseInt(timeLimitMinutes), expiryAt }
       setCreated(c)
 
-      const loginUrl = `${window.location.origin}/login`
-      const expiry = new Date(expiryAt).toLocaleString('en-MY', { timeZone: 'Asia/Kuala_Lumpur' }) + ' (MYT)'
-      setEmailSubject(`Upcoming Technical Assessment - Full-Stack Developer`)
-      setEmailBody(`Hi ${name},
-
-Thank you for your interest in the Full-Stack Developer role at EzyFusion Group.
-
-You have been invited to complete a timed technical assessment. Below is what to expect and your login credentials.
-
---- WHAT TO EXPECT ---
-
-You will be building a Feedback Board - a full-stack CRUD application within a ${timeLimitMinutes}-minute time limit.
-
-Tech stack:
-- Next.js (App Router) with TypeScript
-- Supabase (PostgreSQL, Auth, Storage)
-- Prisma ORM
-- shadcn/ui + Tailwind CSS
-
-You will be evaluated on:
-- Database design and Row Level Security (RLS)
-- Authentication and authorization
-- Full CRUD functionality
-- UI/UX quality
-- File handling and storage
-
---- YOUR CREDENTIALS ---
-
-Login URL: ${loginUrl}
-Email: ${email}
-Password: ${password}
-
-Time Limit: ${timeLimitMinutes} minutes
-Account Expires: ${expiry}
-
---- IMPORTANT ---
-
-- Your timer starts as soon as you log in for the first time.
-- The timer cannot be paused or reset.
-- You can only submit once, so make sure your work is complete before submitting.
-- Your account will expire on ${expiry}, after which you will no longer be able to access the test.
-- Please make sure your development environment is set up with the above stack beforehand so you can make the most of your time.
-
-Candidates who pass will proceed directly to the interview stage.
-
-Good luck!
-
-Best regards,
-EzyFusion Group`)
+      const invite = buildInviteEmail({
+        name,
+        email,
+        password,
+        timeLimitMinutes: parseInt(timeLimitMinutes),
+        expiryAt,
+        loginUrl: `${window.location.origin}/login`,
+      })
+      setEmailSubject(invite.subject)
+      setEmailBody(invite.body)
       setEmailOpen(true)
     }
     return result
@@ -115,7 +77,7 @@ EzyFusion Group`)
     <>
       {/* Add Candidate Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger render={<Button className="bg-indigo-600 hover:bg-indigo-500 text-white" />}>
+        <DialogTrigger render={<Button className="bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold" />}>
           + Add Candidate
         </DialogTrigger>
         <DialogContent>
@@ -143,14 +105,14 @@ EzyFusion Group`)
             </div>
             <div className="space-y-2">
               <Label htmlFor="time_limit_minutes">Time Limit (minutes)</Label>
-              <Input id="time_limit_minutes" name="time_limit_minutes" type="number" defaultValue={90} min={1} required />
+              <Input id="time_limit_minutes" name="time_limit_minutes" type="number" defaultValue={240} min={1} required />
             </div>
             <div className="space-y-2">
               <Label htmlFor="expiry_at">Account Expiry Date</Label>
               <Input id="expiry_at" name="expiry_at" type="datetime-local" required />
               <p className="text-xs text-muted-foreground">Candidate cannot access the test after this date.</p>
             </div>
-            <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white" disabled={pending}>
+            <Button type="submit" className="w-full bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold" disabled={pending}>
               {pending ? 'Adding...' : 'Add Candidate'}
             </Button>
           </form>
@@ -177,7 +139,7 @@ EzyFusion Group`)
               <Textarea value={emailBody} onChange={(e) => setEmailBody(e.target.value)} rows={10} className="font-mono text-xs leading-relaxed" />
             </div>
             <div className="flex gap-2">
-              <Button onClick={handleSendEmail} className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white">
+              <Button onClick={handleSendEmail} className="flex-1 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold">
                 Open in Email Client
               </Button>
               <Button variant="outline" onClick={() => { setEmailOpen(false); setCreated(null) }}>

@@ -10,6 +10,8 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { SendEmailDialog } from '@/components/send-email-dialog'
+import { ResetCandidateDialog } from '@/components/reset-candidate-dialog'
+import { DeleteCandidateButton } from '@/components/delete-candidate-button'
 
 interface Candidate {
   id: string
@@ -33,7 +35,7 @@ function getTimerStatus(c: Candidate) {
   if (!c.timer_started_at) return { label: 'Not Started', dot: 'bg-slate-600', text: 'text-slate-500' }
   const elapsed = Date.now() - new Date(c.timer_started_at).getTime()
   if (elapsed > c.time_limit_minutes * 60 * 1000) return { label: 'Expired', dot: 'bg-red-400', text: 'text-red-400' }
-  return { label: 'In Progress', dot: 'bg-indigo-400 animate-pulse', text: 'text-indigo-400' }
+  return { label: 'In Progress', dot: 'bg-gold-400 animate-pulse', text: 'text-gold-400' }
 }
 
 export function CandidateTable({ candidates, submissions }: CandidateTableProps) {
@@ -69,7 +71,7 @@ export function CandidateTable({ candidates, submissions }: CandidateTableProps)
               return (
                 <TableRow key={candidate.id} className="border-border/50 hover:bg-secondary/50 transition-colors">
                   <TableCell>
-                    <Link href={`/admin/candidates/${candidate.id}`} className="font-medium hover:text-indigo-400 transition-colors">
+                    <Link href={`/admin/candidates/${candidate.id}`} className="font-medium hover:text-gold-400 transition-colors">
                       {candidate.name}
                     </Link>
                   </TableCell>
@@ -97,6 +99,7 @@ export function CandidateTable({ candidates, submissions }: CandidateTableProps)
                     )}
                   </TableCell>
                   <TableCell>
+                    <div className="flex items-center justify-end gap-2">
                     <SendEmailDialog
                       candidateName={candidate.name}
                       candidateEmail={candidate.email}
@@ -104,6 +107,9 @@ export function CandidateTable({ candidates, submissions }: CandidateTableProps)
                       timeLimitMinutes={candidate.time_limit_minutes}
                       expiryAt={candidate.expiry_at}
                     />
+                    <ResetCandidateDialog candidateId={candidate.id} candidateName={candidate.name} />
+                    <DeleteCandidateButton candidateId={candidate.id} />
+                    </div>
                   </TableCell>
                 </TableRow>
               )
