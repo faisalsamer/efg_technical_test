@@ -575,7 +575,7 @@ The walkthrough decides whether the score stands: work you cannot explain is tre
 - You **may** use AI tools. Export their logs to \`ai-logs/\`.
 - You **may** use any documentation and npm packages.
 - You **may not** get help from another person, or use a template that already implements these features.
-- The timer starts at your first login and cannot be paused. Late submissions are not accepted.
+- The timer started when you confirmed at your first sign in and cannot be paused. Late submissions are not accepted.
 
 Good luck.
 `

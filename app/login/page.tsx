@@ -1,16 +1,41 @@
 'use client'
 
-import { useActionState } from 'react'
-import { loginCandidate } from '@/actions/auth'
+import { startTransition, useActionState, useRef, useState } from 'react'
+import { loginCandidate, type CandidateLoginState } from '@/actions/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/password-input'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { BrandLogo } from '@/components/brand-logo'
+import { StartAssessmentDialog } from '@/components/start-assessment-dialog'
 
 export default function LoginPage() {
-  const [state, formAction, pending] = useActionState(loginCandidate, null)
+  // Credentials from a first login, kept so confirming does not require re-typing them
+  const credentials = useRef<FormData | null>(null)
+  const [confirmOpen, setConfirmOpen] = useState(false)
+  const [attempt, setAttempt] = useState(0)
+
+  const [state, formAction, pending] = useActionState(async (
+    prev: CandidateLoginState,
+    formData: FormData
+  ) => {
+    const result = await loginCandidate(prev, formData)
+    if (result?.confirm) {
+      credentials.current = formData
+      setAttempt((n) => n + 1)
+    }
+    setConfirmOpen(!!result?.confirm)
+    return result
+  }, null)
+
+  function startAssessment() {
+    if (!credentials.current) return
+    const formData = new FormData()
+    credentials.current.forEach((value, key) => formData.append(key, value))
+    formData.set('confirm_start', '1')
+    startTransition(() => formAction(formData))
+  }
 
   return (
     <div className="min-h-screen flex">
@@ -70,7 +95,7 @@ export default function LoginPage() {
             <ul className="space-y-2 text-sm text-slate-400">
               <li className="flex gap-2.5 items-start">
                 <span className="mt-1.5 w-1 h-1 rounded-full bg-amber-400 shrink-0" />
-                <span>Your <strong className="text-slate-300">timer starts immediately</strong> on first login and cannot be paused.</span>
+                <span>On first sign in we ask you to confirm. Your <strong className="text-slate-300">timer starts once you start the assessment</strong> and cannot be paused.</span>
               </li>
               <li className="flex gap-2.5 items-start">
                 <span className="mt-1.5 w-1 h-1 rounded-full bg-amber-400 shrink-0" />
@@ -111,9 +136,22 @@ export default function LoginPage() {
                   <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
                   Signing in...
                 </span>
-              ) : 'Start Assessment'}
+              ) : 'Start/Continue Assessment'}
             </Button>
           </form>
+
+          {state?.confirm && (
+            <StartAssessmentDialog
+              key={attempt}
+              open={confirmOpen}
+              onOpenChange={setConfirmOpen}
+              name={state.confirm.name}
+              timeLimitMinutes={state.confirm.timeLimitMinutes}
+              expiryAt={state.confirm.expiryAt}
+              pending={pending}
+              onConfirm={startAssessment}
+            />
+          )}
 
           <p className="text-center text-xs text-muted-foreground">
             By signing in you acknowledge the guidelines above.

@@ -52,7 +52,7 @@ You will be evaluated on:
 
 --- PREPARE BEFOREHAND ---
 
-You will develop against a LOCAL Supabase stack (Docker + Supabase CLI), not a cloud project. We grade by running your migrations and seed script on our machine. Your timer starts at your first login, so set this up first:
+You will develop against a LOCAL Supabase stack (Docker + Supabase CLI), not a cloud project. We grade by running your migrations and seed script on our machine. Your timer starts when you first sign in and confirm you are ready, so set this up first:
 - Node.js 20.9 or newer, Git and a GitHub account
 - Docker Desktop, installed and running
 - Supabase local development, following this guide: https://supabase.com/docs/guides/local-development
@@ -70,7 +70,7 @@ Account Expires: ${expiry}
 
 --- IMPORTANT ---
 
-- Your timer starts as soon as you log in for the first time.
+- On your first sign in you will be asked to confirm you are ready. Your timer starts as soon as you confirm.
 - The timer cannot be paused or reset.
 - You can edit your submission until your time runs out; after that it is final.
 - Your account will expire on ${expiry}, after which you will no longer be able to access the test.

@@ -44,7 +44,7 @@ export function ResetCandidateDialog({ candidateId, candidateName }: { candidate
             </Alert>
           )}
           <p className="text-sm text-muted-foreground">
-            This clears the timer and deletes their current submission. Their timer starts again at their next login. The password stays the same.
+            This clears the timer and deletes their current submission. Their timer starts again when they next sign in and confirm they are ready. The password stays the same.
           </p>
           <input type="hidden" name="candidate_id" value={candidateId} />
           <div className="space-y-2">
