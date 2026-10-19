@@ -4,6 +4,7 @@ import { useActionState } from 'react'
 import { loginAdmin } from '@/actions/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/password-input'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { BrandLogo } from '@/components/brand-logo'
@@ -34,7 +35,7 @@ export default function AdminLoginPage() {
 
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" name="password" type="password" required />
+            <PasswordInput id="password" name="password" required />
           </div>
 
           <Button type="submit" className="w-full h-10 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold" disabled={pending}>

@@ -101,6 +101,8 @@
 }
 
 .dark {
+  /* Native controls (date picker icon, autofill, scrollbars) render in their dark variant */
+  color-scheme: dark;
   --background: #0b0e17;
   --foreground: #ece9e1;
   --card: #111625;
@@ -158,6 +160,21 @@
 }
 .glow-orange {
   box-shadow: 0 0 30px rgba(251, 146, 60, 0.08), 0 0 80px rgba(251, 146, 60, 0.04);
+}
+
+/* Edge's built-in password reveal button; PasswordInput provides its own toggle */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+/* Native date picker icon: show it is clickable */
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.85;
+}
+input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 
 /* Custom scrollbar */
