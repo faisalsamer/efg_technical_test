@@ -41,3 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# assessor-only grading kit (answer keys, hidden tests) - never commit while the repo is public
+/grading/
+
+# cloned candidate repos (may contain their .env files)
+/Submissions/
