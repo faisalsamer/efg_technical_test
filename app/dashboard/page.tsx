@@ -20,6 +20,8 @@ export default async function DashboardPage() {
     .single()
 
   if (!candidate) redirect('/login')
+  // After an admin reset the timer is cleared; logging in again starts it
+  if (!candidate.timer_started_at) redirect('/login')
 
   const submission = await getSubmission(candidate.id)
 

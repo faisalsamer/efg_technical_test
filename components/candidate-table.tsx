@@ -10,6 +10,8 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { SendEmailDialog } from '@/components/send-email-dialog'
+import { ResetCandidateDialog } from '@/components/reset-candidate-dialog'
+import { DeleteCandidateButton } from '@/components/delete-candidate-button'
 
 interface Candidate {
   id: string
@@ -97,6 +99,7 @@ export function CandidateTable({ candidates, submissions }: CandidateTableProps)
                     )}
                   </TableCell>
                   <TableCell>
+                    <div className="flex items-center justify-end gap-2">
                     <SendEmailDialog
                       candidateName={candidate.name}
                       candidateEmail={candidate.email}
@@ -104,6 +107,9 @@ export function CandidateTable({ candidates, submissions }: CandidateTableProps)
                       timeLimitMinutes={candidate.time_limit_minutes}
                       expiryAt={candidate.expiry_at}
                     />
+                    <ResetCandidateDialog candidateId={candidate.id} candidateName={candidate.name} />
+                    <DeleteCandidateButton candidateId={candidate.id} />
+                    </div>
                   </TableCell>
                 </TableRow>
               )

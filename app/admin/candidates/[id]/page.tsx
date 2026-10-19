@@ -4,7 +4,8 @@ import { getCandidate } from '@/actions/candidates'
 import { getSubmission } from '@/actions/submissions'
 import { Label } from '@/components/ui/label'
 import Link from 'next/link'
-import { DeleteCandidateButton } from './delete-button'
+import { DeleteCandidateButton } from '@/components/delete-candidate-button'
+import { ResetCandidateDialog } from '@/components/reset-candidate-dialog'
 import { SendEmailDialog } from '@/components/send-email-dialog'
 
 export const dynamic = 'force-dynamic'
@@ -50,7 +51,8 @@ export default async function CandidateDetailPage({ params }: { params: Promise<
               timeLimitMinutes={candidate.time_limit_minutes}
               expiryAt={candidate.expiry_at}
             />
-            <DeleteCandidateButton candidateId={candidate.id} />
+            <ResetCandidateDialog candidateId={candidate.id} candidateName={candidate.name} />
+            <DeleteCandidateButton candidateId={candidate.id} redirectTo="/admin/dashboard" />
           </div>
         </div>
       </header>
@@ -130,11 +132,11 @@ export default async function CandidateDetailPage({ params }: { params: Promise<
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-slate-500 mb-1">App Email</p>
+                  <p className="text-[11px] uppercase tracking-wider text-slate-500 mb-1">Test Account Email</p>
                   <p className="text-slate-300">{submission.app_email}</p>
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider text-slate-500 mb-1">App Password</p>
+                  <p className="text-[11px] uppercase tracking-wider text-slate-500 mb-1">Test Account Password</p>
                   <p className="text-slate-300 font-mono">{submission.app_password}</p>
                 </div>
               </div>
