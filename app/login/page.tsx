@@ -35,7 +35,7 @@ export default function LoginPage() {
             </div>
             <div className="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              One submission
+              Edit until time&apos;s up
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function LoginPage() {
               </li>
               <li className="flex gap-2.5 items-start">
                 <span className="mt-1.5 w-1 h-1 rounded-full bg-amber-400 shrink-0" />
-                <span>You can only <strong className="text-slate-300">submit once</strong>. Make sure everything is ready.</span>
+                <span>You can <strong className="text-slate-300">edit your submission</strong> until your time runs out. After that it is final.</span>
               </li>
               <li className="flex gap-2.5 items-start">
                 <span className="mt-1.5 w-1 h-1 rounded-full bg-amber-400 shrink-0" />

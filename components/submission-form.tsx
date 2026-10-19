@@ -132,11 +132,11 @@ export function SubmissionForm({ expired, existingSubmission }: SubmissionFormPr
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">Supabase Login Email</p>
+              <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">Test Account Email</p>
               <p className="text-slate-300">{existingSubmission.app_email}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">Supabase Login Password</p>
+              <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">Test Account Password</p>
               <p className="text-slate-300 font-mono">{existingSubmission.app_password}</p>
             </div>
           </div>
@@ -248,7 +248,7 @@ export function SubmissionForm({ expired, existingSubmission }: SubmissionFormPr
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="app_email">Supabase Login Email</Label>
+              <Label htmlFor="app_email">Test Account Email</Label>
               <CharCount value={appEmail} max={LIMITS.app_email} />
             </div>
             <Input
@@ -257,14 +257,14 @@ export function SubmissionForm({ expired, existingSubmission }: SubmissionFormPr
               type="email"
               value={appEmail}
               onChange={(e) => setAppEmail(e.target.value)}
-              placeholder="test@example.com"
+              placeholder="manager@northwind.test"
               required
               maxLength={LIMITS.app_email}
             />
           </div>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="app_password">Supabase Login Password</Label>
+              <Label htmlFor="app_password">Test Account Password</Label>
               <CharCount value={appPassword} max={LIMITS.app_password} />
             </div>
             <Input
@@ -273,7 +273,7 @@ export function SubmissionForm({ expired, existingSubmission }: SubmissionFormPr
               type="text"
               value={appPassword}
               onChange={(e) => setAppPassword(e.target.value)}
-              placeholder="test account password"
+              placeholder="password shared by all seeded accounts"
               required
               maxLength={LIMITS.app_password}
             />
@@ -290,7 +290,7 @@ export function SubmissionForm({ expired, existingSubmission }: SubmissionFormPr
             name="summary"
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
-            placeholder="Briefly describe what you implemented, any trade-offs, and anything else..."
+            placeholder="What works, what does not, and what you skipped..."
             rows={5}
             required
             maxLength={LIMITS.summary}
