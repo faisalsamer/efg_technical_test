@@ -17,11 +17,11 @@ function applyInline(text: string): string {
     .split(/(`[^`]+`)/g)
     .map(part => {
       if (part.length > 1 && part.startsWith('`') && part.endsWith('`')) {
-        return `<code class="px-1.5 py-0.5 rounded bg-slate-800 text-indigo-300 text-xs font-mono">${escapeHtml(part.slice(1, -1))}</code>`
+        return `<code class="px-1.5 py-0.5 rounded bg-slate-800 text-gold-300 text-xs font-mono">${escapeHtml(part.slice(1, -1))}</code>`
       }
       return escapeHtml(part)
         .replace(/\*\*(.+?)\*\*/g, '<strong class="text-slate-200 font-semibold">$1</strong>')
-        .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-indigo-400 underline underline-offset-4 hover:text-indigo-300">$1</a>')
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-gold-400 underline underline-offset-4 hover:text-gold-300">$1</a>')
     })
     .join('')
 }
@@ -146,7 +146,7 @@ function renderMarkdown(md: string): string {
     if (line.startsWith('#### ')) { html += `<h4 class="text-sm font-semibold mt-3 mb-1 text-slate-300">${applyInline(line.slice(5))}</h4>`; continue }
     if (line.startsWith('### ')) { html += `<h3 class="text-sm font-semibold mt-4 mb-1 text-slate-200">${applyInline(line.slice(4))}</h3>`; continue }
     if (line.startsWith('## ')) { html += `<h2 class="text-base font-bold mt-5 mb-1 text-slate-100">${applyInline(line.slice(3))}</h2>`; continue }
-    if (line.startsWith('# ')) { html += `<h1 class="text-lg font-bold mt-5 mb-2 text-indigo-400">${applyInline(line.slice(2))}</h1>`; continue }
+    if (line.startsWith('# ')) { html += `<h1 class="text-lg font-bold mt-5 mb-2 text-gold-400">${applyInline(line.slice(2))}</h1>`; continue }
 
     // Horizontal rule - the only real visual break
     if (trimmed === '---') { html += '<hr class="my-5 border-slate-800" />'; continue }

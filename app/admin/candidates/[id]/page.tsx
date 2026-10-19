@@ -16,7 +16,7 @@ function getTimerInfo(c: { timer_started_at: string | null; time_limit_minutes: 
   if (remainingMs <= 0) return { status: 'Expired', color: 'text-red-400', remaining: '0:00:00' }
   const s = Math.floor(remainingMs / 1000)
   const fmt = (n: number) => n.toString().padStart(2, '0')
-  return { status: 'In Progress', color: 'text-indigo-400', remaining: `${fmt(Math.floor(s / 3600))}:${fmt(Math.floor((s % 3600) / 60))}:${fmt(s % 60)}` }
+  return { status: 'In Progress', color: 'text-gold-400', remaining: `${fmt(Math.floor(s / 3600))}:${fmt(Math.floor((s % 3600) / 60))}:${fmt(s % 60)}` }
 }
 
 export default async function CandidateDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -33,7 +33,7 @@ export default async function CandidateDetailPage({ params }: { params: Promise<
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-50 border-b border-border bg-[#0d1220]/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-border bg-navy-950/80 backdrop-blur-xl">
         <div className="max-w-4xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/admin/dashboard" className="text-muted-foreground hover:text-foreground transition-colors text-sm flex items-center gap-1.5">
@@ -61,7 +61,7 @@ export default async function CandidateDetailPage({ params }: { params: Promise<
         {/* Info card */}
         <div className="rounded-2xl border border-border bg-card p-6">
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-lg">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-navy-950 font-bold text-lg">
               {candidate.name.charAt(0).toUpperCase()}
             </div>
             <div>
@@ -116,7 +116,7 @@ export default async function CandidateDetailPage({ params }: { params: Promise<
             <div className="space-y-4 text-sm">
               <div>
                 <p className="text-[11px] uppercase tracking-wider text-slate-500 mb-1">GitHub</p>
-                <a href={submission.github_url} target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline underline-offset-4 break-all">{submission.github_url}</a>
+                <a href={submission.github_url} target="_blank" rel="noopener noreferrer" className="text-gold-400 hover:text-gold-300 underline underline-offset-4 break-all">{submission.github_url}</a>
               </div>
 
               {Object.keys(submission.env_variables || {}).length > 0 && (
@@ -124,7 +124,7 @@ export default async function CandidateDetailPage({ params }: { params: Promise<
                   <p className="text-[11px] uppercase tracking-wider text-slate-500 mb-2">Environment Variables</p>
                   <div className="font-mono text-xs bg-[#0b0f1a] rounded-xl border border-border p-4 space-y-1 overflow-x-auto">
                     {Object.entries(submission.env_variables as Record<string, string>).map(([k, v]) => (
-                      <div key={k}><span className="text-indigo-400">{k}</span><span className="text-slate-600">=</span><span className="text-emerald-400">{v}</span></div>
+                      <div key={k}><span className="text-gold-400">{k}</span><span className="text-slate-600">=</span><span className="text-emerald-400">{v}</span></div>
                     ))}
                   </div>
                 </div>

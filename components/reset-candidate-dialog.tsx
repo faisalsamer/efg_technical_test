@@ -52,7 +52,7 @@ export function ResetCandidateDialog({ candidateId, candidateName }: { candidate
             <Input id={`reset_expiry_${candidateId}`} name="expiry_at" type="datetime-local" required />
             <p className="text-xs text-muted-foreground">Candidate cannot access the test after this date.</p>
           </div>
-          <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white" disabled={pending}>
+          <Button type="submit" className="w-full bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold" disabled={pending}>
             {pending ? 'Resetting...' : 'Reset Exam'}
           </Button>
         </form>

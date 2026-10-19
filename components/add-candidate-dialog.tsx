@@ -77,7 +77,7 @@ export function AddCandidateDialog() {
     <>
       {/* Add Candidate Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger render={<Button className="bg-indigo-600 hover:bg-indigo-500 text-white" />}>
+        <DialogTrigger render={<Button className="bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold" />}>
           + Add Candidate
         </DialogTrigger>
         <DialogContent>
@@ -112,7 +112,7 @@ export function AddCandidateDialog() {
               <Input id="expiry_at" name="expiry_at" type="datetime-local" required />
               <p className="text-xs text-muted-foreground">Candidate cannot access the test after this date.</p>
             </div>
-            <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white" disabled={pending}>
+            <Button type="submit" className="w-full bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold" disabled={pending}>
               {pending ? 'Adding...' : 'Add Candidate'}
             </Button>
           </form>
@@ -139,7 +139,7 @@ export function AddCandidateDialog() {
               <Textarea value={emailBody} onChange={(e) => setEmailBody(e.target.value)} rows={10} className="font-mono text-xs leading-relaxed" />
             </div>
             <div className="flex gap-2">
-              <Button onClick={handleSendEmail} className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white">
+              <Button onClick={handleSendEmail} className="flex-1 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold">
                 Open in Email Client
               </Button>
               <Button variant="outline" onClick={() => { setEmailOpen(false); setCreated(null) }}>

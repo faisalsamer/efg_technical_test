@@ -45,11 +45,11 @@ export function CountdownTimer({ timerStartedAt, timeLimitMinutes, onExpired }: 
   const totalSeconds = timeLimitMinutes * 60
   const progress = expired ? 0 : (remainingSeconds / totalSeconds) * 100
 
-  const color = expired ? 'red' : urgent ? 'amber' : 'indigo'
+  const color = expired ? 'red' : urgent ? 'orange' : 'gold'
   const colorMap = {
     red: { bg: 'bg-red-500/5', border: 'border-red-500/20', text: 'text-red-400', bar: 'bg-red-500', glow: 'glow-red', dot: 'bg-red-400' },
-    amber: { bg: 'bg-amber-500/5', border: 'border-amber-500/20', text: 'text-amber-400', bar: 'bg-amber-500', glow: 'glow-amber', dot: 'bg-amber-400' },
-    indigo: { bg: 'bg-indigo-500/5', border: 'border-indigo-500/20', text: 'text-indigo-400', bar: 'bg-indigo-500', glow: 'glow-indigo', dot: 'bg-indigo-400' },
+    orange: { bg: 'bg-orange-500/5', border: 'border-orange-500/20', text: 'text-orange-400', bar: 'bg-orange-500', glow: 'glow-orange', dot: 'bg-orange-400' },
+    gold: { bg: 'bg-gold-500/5', border: 'border-gold-500/20', text: 'text-gold-400', bar: 'bg-gold-500', glow: 'glow-gold', dot: 'bg-gold-400' },
   }
   const c = colorMap[color]
 
@@ -65,7 +65,7 @@ export function CountdownTimer({ timerStartedAt, timeLimitMinutes, onExpired }: 
           {[formatNum(hours), formatNum(minutes), formatNum(seconds)].map((val, i) => (
             <div key={i} className="flex items-baseline">
               {i > 0 && <span className="text-slate-600 text-3xl font-light mx-1">:</span>}
-              <span className={`text-5xl font-mono font-bold tabular-nums ${expired ? 'text-red-400/80' : urgent ? 'text-amber-300' : 'text-slate-100'}`}>
+              <span className={`text-5xl font-mono font-bold tabular-nums ${expired ? 'text-red-400/80' : urgent ? 'text-orange-300' : 'text-slate-100'}`}>
                 {val}
               </span>
             </div>

@@ -79,7 +79,7 @@ export function SendEmailDialog({
             <Textarea value={body} onChange={(e) => setBody(e.target.value)} rows={10} className="font-mono text-xs leading-relaxed" />
           </div>
           <div className="flex gap-2">
-            <Button onClick={handleSend} className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white">
+            <Button onClick={handleSend} className="flex-1 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
               Open in Email Client
             </Button>

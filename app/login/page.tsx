@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { BrandLogo } from '@/components/brand-logo'
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(loginCandidate, null)
@@ -13,18 +14,19 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex">
       {/* Left panel - branding */}
-      <div className="hidden lg:flex lg:w-[480px] xl:w-[560px] flex-col justify-between bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-800 p-10 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
+      <div className="hidden lg:flex lg:w-[480px] xl:w-[560px] flex-col justify-between bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 border-r-4 border-gold-500 p-10 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center font-bold text-lg">E</div>
-            <span className="text-xl font-bold tracking-tight">EzyFusion</span>
+            <BrandLogo size={40} />
+            <span className="text-xl font-bold uppercase tracking-wide">Ezyfusion Group</span>
           </div>
         </div>
         <div className="relative z-10 space-y-6">
-          <h2 className="text-3xl font-bold leading-tight">Technical Assessment<br />Portal</h2>
-          <p className="text-indigo-100 leading-relaxed max-w-sm">Complete your timed assessment. Build your project externally and submit your work before time runs out.</p>
-          <div className="flex gap-6 text-sm text-indigo-200">
+          <h2 className="text-3xl font-bold leading-tight">Technical Assessment<br /><span className="text-gold-400">Portal</span></h2>
+          <div className="w-14 h-[3px] bg-gold-500" />
+          <p className="text-slate-300 leading-relaxed max-w-sm">Complete your timed assessment. Build your project externally and submit your work before time runs out.</p>
+          <div className="flex gap-6 text-sm text-gold-300">
             <div className="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               Timed
@@ -39,7 +41,7 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
-        <p className="relative z-10 text-xs text-indigo-300">Ezyfusion Group</p>
+        <p className="relative z-10 text-xs text-slate-500">Ezyfusion Group (EFG) Sdn. Bhd.</p>
       </div>
 
       {/* Right panel - form */}
@@ -48,8 +50,8 @@ export default function LoginPage() {
           {/* Mobile header */}
           <div className="lg:hidden text-center mb-4">
             <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white text-sm">E</div>
-              <span className="text-lg font-bold">EzyFusion</span>
+              <BrandLogo size={32} />
+              <span className="text-lg font-bold uppercase tracking-wide">Ezyfusion Group</span>
             </div>
           </div>
 
@@ -102,7 +104,7 @@ export default function LoginPage() {
               <Input id="password" name="password" type="password" placeholder="Enter your password" required />
             </div>
 
-            <Button type="submit" className="w-full h-10 bg-indigo-600 hover:bg-indigo-500 text-white font-medium" disabled={pending}>
+            <Button type="submit" className="w-full h-10 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold" disabled={pending}>
               {pending ? (
                 <span className="flex items-center gap-2">
                   <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>

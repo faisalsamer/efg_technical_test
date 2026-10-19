@@ -114,7 +114,7 @@ export function SubmissionForm({ expired, existingSubmission }: SubmissionFormPr
         <div className="space-y-5 text-sm">
           <div>
             <p className="text-xs uppercase tracking-wider text-slate-500 mb-1">GitHub Repository</p>
-            <a href={existingSubmission.github_url} target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline underline-offset-4 break-all">
+            <a href={existingSubmission.github_url} target="_blank" rel="noopener noreferrer" className="text-gold-400 hover:text-gold-300 underline underline-offset-4 break-all">
               {existingSubmission.github_url}
             </a>
           </div>
@@ -124,7 +124,7 @@ export function SubmissionForm({ expired, existingSubmission }: SubmissionFormPr
               <p className="text-xs uppercase tracking-wider text-slate-500 mb-2">Environment Variables</p>
               <div className="font-mono text-xs bg-[#0b0f1a] rounded-xl border border-border p-4 space-y-1 overflow-x-auto">
                 {envEntries.map(([k, v]) => (
-                  <div key={k}><span className="text-indigo-400">{k}</span><span className="text-slate-600">=</span><span className="text-emerald-400">{v}</span></div>
+                  <div key={k}><span className="text-gold-400">{k}</span><span className="text-slate-600">=</span><span className="text-emerald-400">{v}</span></div>
                 ))}
               </div>
             </div>
@@ -197,8 +197,8 @@ export function SubmissionForm({ expired, existingSubmission }: SubmissionFormPr
     <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-indigo-400"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+          <div className="w-8 h-8 rounded-lg bg-gold-500/10 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gold-400"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
           </div>
           <h2 className="text-lg font-semibold">{isUpdate ? 'Edit Submission' : 'Submit Your Work'}</h2>
         </div>
@@ -297,7 +297,7 @@ export function SubmissionForm({ expired, existingSubmission }: SubmissionFormPr
           />
         </div>
 
-        <Button type="submit" className="w-full h-10 bg-indigo-600 hover:bg-indigo-500 text-white font-medium" disabled={pending}>
+        <Button type="submit" className="w-full h-10 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold" disabled={pending}>
           {pending ? (
             <span className="flex items-center gap-2">
               <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
